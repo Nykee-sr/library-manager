@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Library</title>
+  </head>
+  <style>
+    table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <body>
+    <%= variableName %>
+    <h1>All Books</h1>
+    <table>
+      <tr>
+        <th>Book Name</th>
+        <th>Book Author</th>
+        <th>Book Pages</th>
+        <th>Book Prices</th>
+        <th>Book Availiability</th>
+        <th>Issue</th>
+        <th>Return</th>
+        <th>Delete</th>
+      </tr>
+      <% data.forEach(element=> { %> <% }) %>
+    </table>
+  </body>
+</html>
