@@ -35,7 +35,15 @@
         <th>Return</th>
         <th>Delete</th>
       </tr>
-      <% data.forEach(element=> { %> <% }) %>
+      <% data.forEach(element=> { %>
+      <tr>
+        <td><%= element.bookName %></td>
+        <td><%= element.bookAuthor %></td>
+        <td><%= element.bookPages %></td>
+        <td><%= element.bookPrice %></td>
+        <td><%= element.bookState %></td>
+      </tr>
+      <% }) %>
     </table>
   </body>
 </html>
