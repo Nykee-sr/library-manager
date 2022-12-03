@@ -31,11 +31,77 @@ app.use(
   })
 );
 
-//Send an EJS file along with some data by using the render method
-app.get('/', (req, res) => {
-  res.render('home', { variableName: 'Hello Mel' });
+app.get('/', function (req, res) {
+  res.render('home', {
+    data: books,
+  });
 });
 
+//Fetch values from the form using req.body.valueName and push it
+app.post('/', (req, res) => {
+  const inputBookName = req.body.bookName;
+  const inputBookAuthor = req.body.bookAuthor;
+  const inputBookPages = req.body.bookPages;
+  const inputBookPrice = req.body.bookPrice;
+
+  books.push({
+    bookName: inputBookName,
+    bookAuthor: inputBookAuthor,
+    bookPages: inputBookPages,
+    bookPrice: inputBookPrice,
+    bookState: 'Available',
+  });
+
+  res.render('home', {
+    data: books,
+  });
+});
+
+//The return route for fetching the requested book's name and search for the element with the same name and the element state property to Available
+app.post('/return', (req, res) => {
+  var requestedBookName = req.body.bookName;
+  books.forEach((book) => {
+    if (book.bookName == requestedBookName) {
+      book.bookState = 'Available';
+    }
+  });
+  res.render('home', {
+    data: books,
+  });
+});
+
+app.post('/issue', (req, res) => {
+  var requestedBookName = req.body.bookName;
+  books.forEach((book) => {
+    if (book.bookName == requestedBookName) {
+      book.bookState = 'Issued';
+    }
+  });
+  res.render('home', {
+    data: books,
+  });
+});
+
+//Delete a book with delete route that fetches the requested book name and searches for the element with the same book name
+app.post('/delete', (req, res) => {
+  var requestedBookName = req.body.bookName;
+  var i = 0;
+
+  books.forEach((book) => {
+    i++;
+    if (book.bookName == requestedBookName) {
+      books.splice(i - 1, 1);
+    }
+  });
+
+  res.render('home', { data: books });
+});
+
+//Send an EJS file along with some data by using the render method
+/* app.get('/', (req, res) => {
+  res.render('home', { variableName: 'Hello Mel' });
+});
+ */
 //Listen
 app.listen(3000, (req, res) => {
   console.log('App is running on port 3000');
