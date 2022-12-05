@@ -32,7 +32,7 @@ app.use(
 );
 
 app.get('/', function (req, res) {
-  res.render('home', {
+  res.render('index', {
     data: books,
   });
 });
@@ -52,7 +52,7 @@ app.post('/', (req, res) => {
     bookState: 'Available',
   });
 
-  res.render('home', {
+  res.render('index', {
     data: books,
   });
 });
@@ -65,7 +65,7 @@ app.post('/return', (req, res) => {
       book.bookState = 'Available';
     }
   });
-  res.render('home', {
+  res.render('index', {
     data: books,
   });
 });
@@ -77,7 +77,7 @@ app.post('/issue', (req, res) => {
       book.bookState = 'Issued';
     }
   });
-  res.render('home', {
+  res.render('index', {
     data: books,
   });
 });
@@ -94,12 +94,12 @@ app.post('/delete', (req, res) => {
     }
   });
 
-  res.render('home', { data: books });
+  res.render('index', { data: books });
 });
 
 //Send an EJS file along with some data by using the render method
 /* app.get('/', (req, res) => {
-  res.render('home', { variableName: 'Hello Mel' });
+  res.render('index', { variableName: 'Hello Mel' });
 });
  */
 //Listen
